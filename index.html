@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תזכורות לערב יום כיפור תשפ"ו</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Assistant', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c4c7a 0%, #3d5a8c 50%, #4d6ba0 100%);
+            padding: 20px;
+            color: #1a2542;
+            min-height: 100vh;
+        }
+        
+        .document {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #f8e4a6 0%, #ebd485 100%);
+            border: 3px solid #2c4c7a;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(44, 76, 122, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c4c7a 0%, #1a2542 50%, #0f1429 100%);
+            color: #f8e4a6;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            border-bottom: 4px solid #d4af37;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="gold" opacity="0.2"/><circle cx="80" cy="30" r="1.5" fill="gold" opacity="0.15"/><circle cx="60" cy="70" r="2.5" fill="gold" opacity="0.2"/><circle cx="30" cy="80" r="1" fill="gold" opacity="0.1"/></svg>');
+        }
+        
+        .main-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            color: #d4af37;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            color: #f8e4a6;
+        }
+
+        .reset-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            border: 2px solid #f8e4a6;
+            border-radius: 8px;
+            color: #1a2542;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .reset-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .content {
+            padding: 30px;
+            background: linear-gradient(180deg, #f8e4a6 0%, #ebd485 100%);
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            background: #ffffff;
+            border-radius: 15px;
+            border: 3px solid #2c4c7a;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(44, 76, 122, 0.2);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #2c4c7a, #1a2542);
+            color: #f8e4a6;
+            padding: 18px 25px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            border-bottom: 3px solid #d4af37;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .section-content {
+            padding: 25px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+        }
+
+        .section-notes {
+            padding: 25px;
+            border-top: 2px dashed #2c4c7a;
+            margin-top: 20px;
+            font-size: 1rem;
+            line-height: 1.7;
+            background: linear-gradient(180deg, #f8f8f8 0%, #f0f0f0 100%);
+        }
+        
+        .task-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 2px solid #e6d16f;
+            transition: all 0.3s ease;
+        }
+        
+        .task-row:last-child {
+            border-bottom: none;
+        }
+        
+        .task-row:hover {
+            background: linear-gradient(90deg, #f8e4a6, #f0dc94);
+            transform: translateX(-5px);
+            border-radius: 8px;
+            padding-left: 10px;
+        }
+        
+        .task-row.completed {
+            background: linear-gradient(90deg, #e0e0e0, #d0d0d0);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .checkbox {
+            width: 28px;
+            height: 28px;
+            border: 3px solid #2c4c7a;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .checkbox:hover {
+            border-color: #d4af37;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        .checkbox.checked {
+            background: linear-gradient(135deg, #2c4c7a, #1a2542);
+            border-color: #2c4c7a;
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .checkbox.checked::after {
+            content: '✓';
+        }
+        
+        .task-text {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #1a2542;
+            margin-bottom: 6px;
+        }
+        
+        .task-desc {
+            color: #2c4c7a;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .count-tasks {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-top: 20px;
+            color: #2c4c7a;
+            background: linear-gradient(90deg, #d4af37, #f8e4a6);
+            padding: 10px;
+            border-radius: 8px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+        
+        .dietary-warning {
+            background: linear-gradient(135deg, #fff8e1, #f8e4a6);
+            border: 4px solid #d4af37;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .dietary-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a2542;
+            margin-bottom: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+        
+        .dietary-content {
+            color: #2c4c7a;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .dietary-content strong {
+            color: #1a2542;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #1a2542, #0f1429);
+            color: #f8e4a6;
+            padding: 30px;
+            text-align: center;
+            border-top: 4px solid #d4af37;
+        }
+        
+        .closing-blessing {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .special-phrase {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .save-indicator {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .save-indicator.show {
+            opacity: 1;
+        }
+        
+        @media print {
+            body { 
+                background: white; 
+                padding: 0; 
+            }
+            .document { 
+                box-shadow: none; 
+                border: 3px solid #2c4c7a; 
+            }
+            .reset-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="save-indicator" id="saveIndicator">✓ נשמר אוטומטית</div>
+    
+    <div class="document">
+        <div class="header">
+            <h1 class="main-title">תזכורות לערב יום כיפור תשפ"ו</h1>
+            <p class="subtitle">יוצא לאור ע"י מכון הלכה חב"ד</p>
+            <button class="reset-button" onclick="resetAll()">איפוס כל הסימונים</button>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <div class="section-header">משימות הבוקר</div>
+                <div class="section-content">
+                    <div class="task-row" data-task-id="task-1">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">טבילה ראשונה במקווה</div>
+                            <div class="task-desc">יש הנוהגים לטבול לפני כפרות</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-2">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">כפרות / פדיון כפרות</div>
+                            <div class="task-desc">ביצוע מצוות הכפרות או פדיון בצדקה</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-3">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">לבישת בגדי שבת</div>
+                            <div class="task-desc">מנהג רבותינו נשיאנו</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">תפילת שחרית ואחריה</div>
+                <div class="section-content">
+                    <div class="task-row" data-task-id="task-4">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">שחרית מיוחדת</div>
+                            <div class="task-desc">מדלגים: מזמור לתודה, תחנון, "אבינו מלכנו"</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-5">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">שלושה פרקי תהלים</div>
+                            <div class="task-desc">קי"ח—קי"ד</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-6">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">לעקַח</div>
+                            <div class="task-desc">מבקשים אחרי שחרית</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dietary-warning">
+                <div class="dietary-title">
+                    🚫 איסורי אכילה ביום
+                </div>
+                <div class="dietary-content">
+                    <strong>אסור לכולם:</strong> שומשום, בשר בהמה<br>
+                    <strong>גברים אינם אוכלים:</strong> שום, ביצים<br>
+                    <strong>מותר:</strong> מאכלי חלב בסעודת הבוקר.
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">סעודות והכנות ליום כיפור</div>
+                <div class="section-content">
+                    <div class="task-row" data-task-id="task-7">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">פרישת מפה לבנה</div>
+                            <div class="task-desc">על השולחן כבשבת ויום טוב</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-8">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">סעודת שחרית</div>
+                            <div class="task-desc">טבילת פרוסת המוציא בדבש, מרבים באכילה כשיעור שני ימים</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-9">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">אכילת קרעפלאך במשך היום</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-10">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">לימוד חת"ת ורמב"ם</div>
+                        </div>
+                    </div>
+
+                    <div class="task-row" data-task-id="task-11">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">פיזור צדקה בכל היום</div>
+                            <div class="task-desc">בפרט לפני מנחה מפזרים מטבעות בקופות</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">אחר הצהריים - לפני כניסת החג</div>
+                <div class="section-content">
+                    <div class="task-row" data-task-id="task-12">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">ל"ט מלקות</div>
+                            <div class="task-desc">פנים לצפון, עם רצועת עור על כתף ימין, כתף שמאל, תחתיהם באמצע, וחוזר חלילה. אומרים (המלקה והנלקה) "והוא רחום..." ג"פ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-13">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">טבילה שנייה במקווה</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-14">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">תפילת מנחה מיוחדת</div>
+                            <div class="task-desc">אומרים "על חטא", אין תחנון ו"אבינו מלכנו"</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-15">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">סעודה מפסקת</div>
+                            <div class="task-desc">טבילת המוציא בדבש, ממעטים מאוד במלח, לסיים מבעוד יום</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-16">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">טבילה שלישית במקווה</div>
+                            <div class="task-desc">לסיים לטבול לפני השקיעה</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">הכנות לכניסת יום הכיפורים</div>
+                <div class="section-content">
+                    <div class="task-row" data-task-id="task-17">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">בדיקת כיסי הבגדים</div>
+                            <div class="task-desc">לוודא שאין דברים אסורים</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-18">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">החלפת נעלי העור</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-19">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">הדלקת נר נשמה</div>
+                            <div class="task-desc">למי שאחד מהוריו נפטר, מדליקים בבית</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-20">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">השארת אור דלוק בחדר השינה</div>
+                            <div class="task-desc">זוג נשוי צריכים להקפיד שיכנס לחדרם אור</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-21">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">הדלקת נר עד מוצאי יוה"כ</div>
+                            <div class="task-desc">בכדי לברך "בורא מאורי האש" במוצאי יוה"כ על נר ששבת</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-22">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">הדלקת נרות יום הכיפורים</div>
+                            <div class="task-desc">בברכה ובברכת שהחיינו</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-23">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">הדלקת נר חיים</div>
+                            <div class="task-desc">לוקחים לבית כנסת ונותנים לגבאי שידליק</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-24">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">לבישת קיטל</div>
+                            <div class="task-desc">החל מהשנה השנייה לאחר הנישואין</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-25">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">התעטפות בטלית</div>
+                            <div class="task-desc">יש לברך לפני שקיעה (ואם עבר השקיעה לא יברך עליה)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-26">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">ברכת הבנים והבנות</div>
+                            <div class="task-desc">לפני "כל נדרי", כשמלובש בקיטל ומעוטף בטלית</div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-row" data-task-id="task-27">
+                        <div class="checkbox" onclick="toggleTask(this)"></div>
+                        <div class="task-text">
+                            <div class="task-title">אמירת ווידוי ביחיד</div>
+                            <div class="task-desc">יש להתחיל לפני השקיעה</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-notes">
+                <div class="count-tasks" id="taskCounter">סה"כ <span id="completedCount">0</span> מתוך 27 משימות הושלמו</div>
+                <br>
+                <strong>הערות נוספות:</strong>
+                <ul style="list-style: none; padding-right: 20px;">
+                    <li>• מצווה להוסיף מחול על הקודש בין בעינוי בין באיסור מלאכה</li>
+                    <li>• אמירת תהלים לפני "כל נדרי" — פרקים קט"ו עד קכ"ג</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="closing-blessing">גמר חתימה טובה! 🕯️</div>
+            <div class="special-phrase">יחי אדוננו מורנו ורבינו מלך המשיח לעולם ועד</div>
+        </div>
+    </div>
+
+    <script>
+        // טעינת מצב השמור בעת טעינת הדף
+        window.addEventListener('DOMContentLoaded', function() {
+            loadSavedState();
+            updateCounter();
+        });
+
+        function toggleTask(checkbox) {
+            const taskRow = checkbox.closest('.task-row');
+            const taskId = taskRow.getAttribute('data-task-id');
+            
+            if (checkbox.classList.contains('checked')) {
+                checkbox.classList.remove('checked');
+                taskRow.classList.remove('completed');
+                saveTaskState(taskId, false);
+            } else {
+                checkbox.classList.add('checked');
+                taskRow.classList.add('completed');
+                saveTaskState(taskId, true);
+            }
+            
+            updateCounter();
+            showSaveIndicator();
+        }
+
+        function saveTaskState(taskId, isCompleted) {
+            localStorage.setItem(taskId, isCompleted ? 'true' : 'false');
+        }
+
+        function loadSavedState() {
+            const taskRows = document.querySelectorAll('.task-row');
+            
+            taskRows.forEach(taskRow => {
+                const taskId = taskRow.getAttribute('data-task-id');
+                const savedState = localStorage.getItem(taskId);
+                
+                if (savedState === 'true') {
+                    const checkbox = taskRow.querySelector('.checkbox');
+                    checkbox.classList.add('checked');
+                    taskRow.classList.add('completed');
+                }
+            });
+        }
+
+        function updateCounter() {
+            const totalTasks = document.querySelectorAll('.task-row').length;
+            const completedTasks = document.querySelectorAll('.task-row.completed').length;
+            
+            document.getElementById('completedCount').textContent = completedTasks;
+        }
+
+        function showSaveIndicator() {
+            const indicator = document.getElementById('saveIndicator');
+            indicator.classList.add('show');
+            
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        function resetAll() {
+            if (confirm('האם אתה בטוח שברצונך לאפס את כל הסימונים?')) {
+                const taskRows = document.querySelectorAll('.task-row');
+                
+                taskRows.forEach(taskRow => {
+                    const taskId = taskRow.getAttribute('data-task-id');
+                    const checkbox = taskRow.querySelector('.checkbox');
+                    
+                    checkbox.classList.remove('checked');
+                    taskRow.classList.remove('completed');
+                    localStorage.removeItem(taskId);
+                });
+                
+                updateCounter();
+                alert('כל הסימונים אופסו בהצלחה!');
+            }
+        }
+    </script>
+</body>
+</html>
